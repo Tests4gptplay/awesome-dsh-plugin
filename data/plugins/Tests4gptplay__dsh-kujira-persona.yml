@@ -1,6 +1,6 @@
 url: https://github.com/Tests4gptplay/dsh-kujira-persona
 name: Tests4gptplay/dsh-kujira-persona
-category: identity
+category: fun
 tarball: https://github.com/Tests4gptplay/dsh-kujira-persona/releases/download/v1.6.2/dsh-kujira-persona-1.6.2.tgz
 description:
   en: Switches AI personas with the selected model, sharing world lore while keeping individual character profiles, and supports conversational editing and custom model-to-character bindings.
