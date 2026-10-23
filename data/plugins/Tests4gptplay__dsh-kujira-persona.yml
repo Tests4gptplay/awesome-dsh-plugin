@@ -1,7 +1,7 @@
 url: https://github.com/Tests4gptplay/dsh-kujira-persona
 name: Tests4gptplay/dsh-kujira-persona
 category: identity
-tarball: https://github.com/Tests4gptplay/dsh-kujira-persona/releases/download/v1.3.1/dsh-kujira-persona.tgz
+tarball: https://github.com/Tests4gptplay/dsh-kujira-persona/releases/download/v1.6.2/dsh-kujira-persona-1.6.2.tgz
 description:
-  en: Injects a bundled whale-girl persona from editable Markdown files into DSH system prompts, with next-request updates, optional agent edits, and upgrade sync that preserves local changes.
-  zh: 将内置鲸鱼娘人设从可编辑的 Markdown 文件注入 DSH 系统提示词，支持下一轮更新、可关闭的代理编辑，以及保留本地改动的升级同步。
+  en: Switches AI personas with the selected model, sharing world lore while keeping individual character profiles, and supports conversational editing and custom model-to-character bindings.
+  zh: 随选用的模型切换 AI 角色，共享世界观并保留独立人物档案，支持通过对话修改设定、创建角色和自定义模型绑定。
