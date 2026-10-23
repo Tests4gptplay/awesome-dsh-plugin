@@ -3,5 +3,5 @@ name: Tests4gptplay/dsh-kujira-persona
 category: fun
 tarball: https://github.com/Tests4gptplay/dsh-kujira-persona/releases/download/v1.6.2/dsh-kujira-persona-1.6.2.tgz
 description:
-  en: Switches AI personas with the selected model, sharing world lore while keeping individual character profiles, and supports conversational editing and custom model-to-character bindings.
-  zh: 随选用的模型切换 AI 角色，共享世界观并保留独立人物档案，支持通过对话修改设定、创建角色和自定义模型绑定。
+  en: "AI-gijinka roleplay with editable personas, model-based character switching, shared world lore, separate character memories and in-chat Markdown editing."
+  zh: "AI 拟人（AI 娘）人设与角色扮演：随模型切换角色，共享世界观、保留独立人物档案与记忆，支持自定义角色、模型绑定和对话编辑 Markdown 设定。"
