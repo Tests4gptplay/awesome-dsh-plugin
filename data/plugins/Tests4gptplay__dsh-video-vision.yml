@@ -1,0 +1,7 @@
+url: https://github.com/Tests4gptplay/dsh-video-vision
+name: Tests4gptplay/dsh-video-vision
+category: vision
+tarball: https://github.com/Tests4gptplay/dsh-video-vision/releases/download/v0.5.2/dsh-video-vision-0.5.2.tgz
+description:
+  en: "Give DSH AI timestamped video vision for Bilibili, YouTube and local files, with frame sampling, captions, audio transcription, continued viewing, site resolvers and native cache management."
+  zh: "让 DSH 中的 AI 查看 B 站、YouTube 和本地视频的时间戳画面，结合字幕及语音转写理解内容，支持接续观看、站点解析扩展和原生缓存管理。"
