@@ -1,6 +1,7 @@
 url: https://github.com/Tests4gptplay/dsh-codex-native
 name: Tests4gptplay/dsh-codex-native
 category: model
+icon: https://raw.githubusercontent.com/Tests4gptplay/dsh-codex-native/main/docs/icons/codex-app.png
 tarball: https://github.com/Tests4gptplay/dsh-codex-native/releases/download/v0.2.1-alpha.8/dsh-codex-native-0.2.1-alpha.8.tgz
 description:
   en: "OpenAI Codex app-server main-model integration with ChatGPT login, DSH tools, native settings, stable session handling, Token accounting, Codex context compaction and manual usage history."
