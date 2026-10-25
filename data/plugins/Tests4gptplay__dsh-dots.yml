@@ -1,0 +1,8 @@
+url: https://github.com/Tests4gptplay/dsh-dots
+name: Tests4gptplay/dsh-dots
+category: browser
+tarball: https://github.com/Tests4gptplay/dsh-dots/releases/download/v0.1.1/dsh-dots-0.1.1.tgz
+icon: https://raw.githubusercontent.com/Tests4gptplay/dsh-dots/main/assets/dots-market-icon.png
+description:
+  en: "Opens ChatGPT Dots in a DSH-native panel with an Electron WebView on desktop, a theme-aware toolbar and a browser fallback."
+  zh: "在 DSH 原生面板中打开 ChatGPT Dots，桌面版使用 Electron WebView，并提供适配主题的工具栏和浏览器打开入口。"
