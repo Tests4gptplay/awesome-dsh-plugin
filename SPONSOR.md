@@ -4,6 +4,10 @@ Thank you for supporting the maintenance of **Awesome DSH Plugin Fork**. / 感�
 
 Upstream project / 上游项目：[awesome-dsh-plugin/awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)
 
+## GitHub Sponsors / GitHub 官方赞助
+
+- [GitHub Sponsors — Tests4gptplay](https://github.com/sponsors/Tests4gptplay)（支持单次赞助与每月赞助 / One-time and monthly sponsorships）
+
 ## International / 国际赞助
 
 - [Ko-fi — kou392350](https://ko-fi.com/kou392350)
