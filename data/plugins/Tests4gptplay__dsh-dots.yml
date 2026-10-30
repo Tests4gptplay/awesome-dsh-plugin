@@ -2,7 +2,7 @@ url: https://github.com/Tests4gptplay/dsh-dots
 name: Tests4gptplay/dsh-dots
 category: browser
 icon: https://raw.githubusercontent.com/Tests4gptplay/dsh-dots/main/assets/dots-market-icon.png
-tarball: https://github.com/Tests4gptplay/dsh-dots/releases/download/v1.0.9/dsh-dots-1.0.9.tgz
+tarball: https://github.com/Tests4gptplay/dsh-dots/releases/download/v1.0.11/dsh-dots-1.0.11.tgz
 description:
-  en: "Open ChatGPT Dots in a native DSH page: Desktop preloads it in the background and keeps the same page alive across panel switches, with a theme-aware toolbar, reload and external-browser controls."
-  zh: "在 DSH 原生页面中打开 ChatGPT Dots：Desktop 启动后台预加载，切换面板时保留同一个页面，并提供随主题适配的工具栏、刷新和外部浏览器入口。"
+  en: "Use ChatGPT Dots in a full-width DSH page with Desktop startup preload and page retention across panel switches, Chinese/English theme-aware controls, reload and external-browser fallback; includes a separately applied login-persistence companion for Windows DSH 0.2.1-rc.3."
+  zh: "在 DSH 全幅页面使用 ChatGPT Dots，支持 Desktop 启动预加载与切换保留、中英文主题工具栏、刷新及外部浏览器回退，并提供需单独应用、适用于 Windows DSH 0.2.1-rc.3 的登录态持久化配套工具。"
