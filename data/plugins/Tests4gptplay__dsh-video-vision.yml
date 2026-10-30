@@ -3,5 +3,5 @@ name: Tests4gptplay/dsh-video-vision
 category: vision
 tarball: https://github.com/Tests4gptplay/dsh-video-vision/releases/download/v0.9.1/dsh-video-vision-0.9.1.tgz
 description:
-  en: "Give DSH AI timestamped video frames, audio and lyric analysis for Bilibili, YouTube and local files, with browser-session import, optional built-in browser sync, continued viewing, saved site resolvers and native cache management. Requires FFmpeg and ffprobe on PATH or configured in the plugin settings."
-  zh: "让 DSH 中的 AI 结合时间戳画面、音频与歌词理解 B 站、YouTube 和本地视频，支持浏览器登录态导入、可选的内置浏览器同步、接续观看、站点解析扩展和原生缓存管理。需要把 FFmpeg 与 ffprobe 放进 PATH，或在插件设置中填写程序路径。"
+  en: "Analyze online and local video in DSH with timestamped frames, audio, platform captions and transcription through a prepared recognizer. Resume viewing, cache media and export video or individual files. Video acquisition combines built-in Bilibili support, saved site methods and an optional yt-dlp backup; AI can use Host tools to explore and save new methods. Link availability depends on site access and the resolver. Supports user-imported browser sessions and optional DSH built-in browser sync. Put FFmpeg and ffprobe on PATH or set their paths in plugin settings."
+  zh: "在 DSH 中分析网络及本地视频：结合时间戳画面、音频、平台字幕及已准备识别器的转写，支持接续观看、本地缓存、提取与另存视频和单文件。通过 Bilibili 内置解析、保存的站点方法和可选 yt-dlp 备用解析获取视频；AI 可利用宿主工具探索并保存新站点方法。具体链接取决于站点访问条件和解析方法。支持用户导入浏览器登录态与可选的 DSH 内置浏览器同步。FFmpeg 与 ffprobe 可加入 PATH，或在插件设置中指定路径。"
