@@ -1,0 +1,105 @@
+name: Prepare Video Vision 0.10.2 market mapping
+on:
+  push:
+    branches: [release-market-video-vision-0.10.2-20261110]
+    paths: [.github/workflows/prepare-video-vision-0.10.2-market.yml]
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      - name: Verify public registry, release bytes and update target mapping
+        run: |
+          mkdir -p "$RUNNER_TEMP/vv-market"
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import {createHash} from 'node:crypto';
+          import path from 'node:path';
+          const url='https://github.com/Tests4gptplay/dsh-video-vision';
+          const name='@tests4gptplay/dsh-video-vision',version='0.10.2';
+          const registry=await fetch('https://registry.npmjs.org/@tests4gptplay%2Fdsh-video-vision');
+          if(!registry.ok)throw Error('Registry HTTP '+registry.status);
+          const meta=await registry.json(),manifest=meta.versions?.[version];
+          if(!manifest||meta['dist-tags']?.latest!==version)throw Error('Requested version is not public latest yet');
+          if(manifest.name!==name||!manifest.repository?.url?.includes('Tests4gptplay/dsh-video-vision'))throw Error('Published package identity mismatch');
+          const publishedAt=Math.floor(Date.parse(meta.time?.[version])/1000);
+          if(!Number.isSafeInteger(publishedAt)||publishedAt<=0)throw Error('Publication time absent');
+          const response=await fetch(manifest.dist.tarball);
+          if(!response.ok)throw Error('Published tarball HTTP '+response.status);
+          const bytes=Buffer.from(await response.arrayBuffer());
+          const sha256=createHash('sha256').update(bytes).digest('hex');
+          if(sha256!=='aaa433fbf3811717a9bcf1a1247d9bb2e0834a5df2f94916e8ba127e9f106f7c')throw Error('npm package differs from verified release package');
+          const releaseUrl=url+'/releases/download/v0.10.2/dsh-video-vision-0.10.2.tgz';
+          const release=await fetch(releaseUrl);
+          if(!release.ok)throw Error('Release URL HTTP '+release.status);
+          if(!Buffer.from(await release.arrayBuffer()).equals(bytes))throw Error('GitHub and npm package bytes differ');
+          const file='data/npm-map.json';
+          const map=JSON.parse(fs.readFileSync(file,'utf8'));
+          const previous=map[url]??null;
+          map[url]={...map[url],npm:name,version,publishedAt,enginesDsh:manifest.engines?.dsh??null,checkedAt:new Date().toISOString().slice(0,10)};
+          fs.writeFileSync(file,JSON.stringify(map,null,1)+'\n');
+          const result={url,name,version,latest:meta['dist-tags'].latest,publishedAt,publicationISO:meta.time[version],previous,mapping:map[url],tarball:manifest.dist.tarball,integrity:manifest.dist.integrity,sha256,bytes:bytes.length,githubTarball:releaseUrl};
+          const output=path.join(process.env.RUNNER_TEMP,'vv-market/npm-public-verification.json');
+          fs.writeFileSync(output,JSON.stringify(result,null,2)+'\n');
+          console.log(JSON.stringify(result,null,2));
+          JS
+      - name: Install market build dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Validate YAML and actual host-readable market index
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import {readEntries} from './scripts/lib/entries.mjs';
+          import {buildMarketIndex} from './scripts/lib/market-index.mjs';
+          import locales from './site/locales.mjs';
+          const entries=readEntries();
+          const url='https://github.com/Tests4gptplay/dsh-video-vision';
+          const entry=entries.find(x=>x.url===url);
+          assert(entry);
+          assert.equal(entry.tarball,url+'/releases/download/v0.10.2/dsh-video-vision-0.10.2.tgz');
+          const npmMap=JSON.parse(fs.readFileSync('data/npm-map.json','utf8'));
+          const {index,refused}=buildMarketIndex({entries:[entry],npmMap,locales});
+          assert.equal(refused.length,0);
+          const item=index.plugins.find(x=>x.name==='@tests4gptplay/dsh-video-vision');
+          assert(item);
+          assert.equal(item.versions[0].version,'0.10.2');
+          assert.equal(item.versions[0].source.type,'npm');
+          assert.equal(item.versions[0].publishTimestamp,npmMap[url].publishedAt);
+          fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'vv-market/native-market-entry.json'),JSON.stringify({entry,item},null,2)+'\n');
+          console.log('YAML_AND_NATIVE_DSH_MARKET_INDEX_VERIFIED',JSON.stringify(item));
+          JS
+          node scripts/generate-readme.mjs
+          node scripts/build-site.mjs
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const index=JSON.parse(fs.readFileSync('docs/index.json','utf8'));
+          const item=index.plugins.find(x=>x.name==='@tests4gptplay/dsh-video-vision');
+          assert(item&&item.versions.some(x=>x.version==='0.10.2'&&x.source.type==='npm'));
+          console.log('GENERATED_INDEX_CONTAINS_VERSION_0.10.2');
+          JS
+      - name: Keep the submission focused and remove this task helper
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/prepare-video-vision-0.10.2-market.yml
+          git add data/npm-map.json
+          git diff --cached --check
+          git commit -m 'market: verify Video Vision 0.10.2 npm identity and generated install index'
+          git push origin HEAD:refs/heads/release-market-video-vision-0.10.2-20261110
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: video-vision-0.10.2-market-verification
+          path: ${{ runner.temp }}/vv-market/
+          if-no-files-found: warn
